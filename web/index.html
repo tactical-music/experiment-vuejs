@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="js/tview.js"></script>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{ message }}
+</div>
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<div id="chart"></div>
+
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+
+    const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
+    const lineSeries = chart.addLineSeries();
+    lineSeries.setData([
+        { time: '2019-04-11', value: 80.01 },
+        { time: '2019-04-12', value: 96.63 },
+        { time: '2019-04-13', value: 76.64 },
+        { time: '2019-04-14', value: 81.89 },
+        { time: '2019-04-15', value: 74.43 },
+        { time: '2019-04-16', value: 80.01 },
+        { time: '2019-04-17', value: 96.63 },
+        { time: '2019-04-18', value: 76.64 },
+        { time: '2019-04-19', value: 81.89 },
+        { time: '2019-04-20', value: 74.43 },
+    ]);
+
+    //// TVIEW
+
+    /*
+    import { createChart } from 'lightweight-charts';
+
+    const chart = createChart(document.getElementById('chart'), { width: 400, height: 300 });
+    const lineSeries = chart.addLineSeries();
+    lineSeries.setData([
+        { time: '2019-04-11', value: 80.01 },
+        { time: '2019-04-12', value: 96.63 },
+        { time: '2019-04-13', value: 76.64 },
+        { time: '2019-04-14', value: 81.89 },
+        { time: '2019-04-15', value: 74.43 },
+        { time: '2019-04-16', value: 80.01 },
+        { time: '2019-04-17', value: 96.63 },
+        { time: '2019-04-18', value: 76.64 },
+        { time: '2019-04-19', value: 81.89 },
+        { time: '2019-04-20', value: 74.43 },
+    ]);
+    */
+
+</script>
+
+
+</body>
+</html>
